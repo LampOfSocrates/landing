@@ -3,46 +3,353 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landing</title>
+  <title>Sourav Sen — Pet Projects</title>
+  <meta name="description" content="A showcase of pet projects: fingod, aiquiz, cine_nova, propertyguru." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <nav class="nav">
-      <a href="#" class="brand">Landing</a>
+      <a href="#" class="brand">~/code/2026</a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="https://github.com/LampOfSocrates" target="_blank" rel="noopener">GitHub</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Headline goes here</h1>
-      <p class="lead">Subheadline or value proposition.</p>
-      <a href="#" class="cta">Call to action</a>
+      <p class="eyebrow">Pet projects · 2026</p>
+      <h1>Things I'm building when no one asked me to.</h1>
+      <p class="lead">
+        Four side projects living under <code>~/code/2026</code>. Each one started as
+        a question — about markets, about cinema, about how I learn, about how
+        property tickets should feel — and turned into something I could actually run.
+      </p>
     </section>
 
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>Content placeholder.</p>
-    </section>
+    <section id="projects" class="projects">
+      <!-- fingod -->
+      <article class="card card--fingod">
+        <div class="card-cover" aria-hidden="true">
+          <svg class="card-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="fg-bg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0f2540"/>
+                <stop offset="100%" stop-color="#173d5e"/>
+              </linearGradient>
+              <linearGradient id="fg-line" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#4ade80"/>
+                <stop offset="100%" stop-color="#86efac"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="200" fill="url(#fg-bg)"/>
+            <!-- grid -->
+            <g stroke="#234c75" stroke-width="0.5" opacity="0.5">
+              <line x1="0" y1="50" x2="400" y2="50"/>
+              <line x1="0" y1="100" x2="400" y2="100"/>
+              <line x1="0" y1="150" x2="400" y2="150"/>
+              <line x1="80" y1="0" x2="80" y2="200"/>
+              <line x1="160" y1="0" x2="160" y2="200"/>
+              <line x1="240" y1="0" x2="240" y2="200"/>
+              <line x1="320" y1="0" x2="320" y2="200"/>
+            </g>
+            <!-- candlesticks -->
+            <g>
+              <line x1="40" y1="80" x2="40" y2="140" stroke="#4ade80" stroke-width="1.5"/>
+              <rect x="34" y="100" width="12" height="25" fill="#4ade80"/>
+              <line x1="80" y1="60" x2="80" y2="130" stroke="#4ade80" stroke-width="1.5"/>
+              <rect x="74" y="80" width="12" height="35" fill="#4ade80"/>
+              <line x1="120" y1="70" x2="120" y2="135" stroke="#f87171" stroke-width="1.5"/>
+              <rect x="114" y="85" width="12" height="30" fill="#f87171"/>
+              <line x1="160" y1="50" x2="160" y2="120" stroke="#4ade80" stroke-width="1.5"/>
+              <rect x="154" y="65" width="12" height="40" fill="#4ade80"/>
+              <line x1="200" y1="40" x2="200" y2="115" stroke="#4ade80" stroke-width="1.5"/>
+              <rect x="194" y="55" width="12" height="45" fill="#4ade80"/>
+              <line x1="240" y1="55" x2="240" y2="125" stroke="#f87171" stroke-width="1.5"/>
+              <rect x="234" y="70" width="12" height="40" fill="#f87171"/>
+              <line x1="280" y1="35" x2="280" y2="110" stroke="#4ade80" stroke-width="1.5"/>
+              <rect x="274" y="50" width="12" height="45" fill="#4ade80"/>
+              <line x1="320" y1="25" x2="320" y2="100" stroke="#4ade80" stroke-width="1.5"/>
+              <rect x="314" y="40" width="12" height="50" fill="#4ade80"/>
+              <line x1="360" y1="20" x2="360" y2="95" stroke="#4ade80" stroke-width="1.5"/>
+              <rect x="354" y="35" width="12" height="50" fill="#4ade80"/>
+            </g>
+            <!-- trend line -->
+            <path d="M 20 140 L 60 110 L 100 105 L 140 85 L 180 70 L 220 80 L 260 55 L 300 45 L 340 30 L 380 25" fill="none" stroke="url(#fg-line)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <div class="card-icon" title="fingod">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/>
+              <path d="M7 14l4-4 4 3 5-6"/>
+              <path d="M16 7h4v4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">fingod</h2>
+          <p class="card-tag">Market-data pipeline · Python · Streamlit · React</p>
+          <p class="card-desc">
+            A small market-data pipeline for a personal investment-advisory tool.
+            Tracks UK OEICs, LSE-listed stocks and US stocks; pulls daily prices,
+            extracts OEIC ongoing-charge figures from KIID PDFs, and surfaces
+            everything through a Streamlit UI and a Vite + React SPA over a thin
+            FastAPI shim.
+          </p>
+          <div class="card-actions">
+            <a class="btn btn--primary" href="https://github.com/LampOfSocrates/fingod" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.4-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+              Repo
+            </a>
+            <a class="btn btn--ghost btn--disabled" href="#" aria-disabled="true" title="No live URL yet — see README">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Live · TBD
+            </a>
+          </div>
+        </div>
+      </article>
 
-    <section id="features" class="section">
-      <h2>Features</h2>
-      <p>Content placeholder.</p>
-    </section>
+      <!-- aiquiz -->
+      <article class="card card--aiquiz">
+        <div class="card-cover" aria-hidden="true">
+          <svg class="card-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <pattern id="aq-paper" width="60" height="60" patternUnits="userSpaceOnUse">
+                <rect width="60" height="60" fill="#f4edd8"/>
+                <path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z" fill="#c8b896" fill-opacity="0.35"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="200" fill="url(#aq-paper)"/>
+            <!-- ruled lines -->
+            <g stroke="#a89878" stroke-width="0.5" opacity="0.5">
+              <line x1="40" y1="40" x2="360" y2="40"/>
+              <line x1="40" y1="65" x2="360" y2="65"/>
+              <line x1="40" y1="90" x2="360" y2="90"/>
+              <line x1="40" y1="115" x2="360" y2="115"/>
+              <line x1="40" y1="140" x2="360" y2="140"/>
+              <line x1="40" y1="165" x2="360" y2="165"/>
+            </g>
+            <!-- checkmarks / Qs -->
+            <g font-family="Georgia, serif" fill="#1c1208">
+              <text x="60" y="58" font-size="13" font-style="italic">Q1.</text>
+              <text x="60" y="83" font-size="13" font-style="italic">Q2.</text>
+              <text x="60" y="108" font-size="13" font-style="italic">Q3.</text>
+              <text x="60" y="133" font-size="13" font-style="italic">Q4.</text>
+            </g>
+            <g stroke="#1a5c2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <path d="M340 53 l5 6 l10 -12"/>
+              <path d="M340 78 l5 6 l10 -12"/>
+            </g>
+            <g stroke="#8b1919" stroke-width="2.5" stroke-linecap="round" fill="none">
+              <line x1="342" y1="100" x2="356" y2="114"/>
+              <line x1="356" y1="100" x2="342" y2="114"/>
+            </g>
+            <g stroke="#1a5c2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <path d="M340 128 l5 6 l10 -12"/>
+            </g>
+            <!-- wax seal -->
+            <circle cx="60" cy="165" r="14" fill="#7a1c50" opacity="0.85"/>
+            <text x="60" y="170" text-anchor="middle" font-family="Georgia, serif" fill="#f4edd8" font-size="11" font-style="italic">ATCV</text>
+          </svg>
+          <div class="card-icon" title="aiquiz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.5 2a4.5 4.5 0 0 0-3 7.5c-.5.7-.5 2 0 3v4a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-4c.5-1 .5-2.3 0-3a4.5 4.5 0 0 0-6-7.5z"/>
+              <line x1="10" y1="22" x2="14" y2="22"/>
+              <line x1="12" y1="9" x2="12" y2="14"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">aiquiz</h2>
+          <p class="card-tag">ATCV self-test · Static HTML · GitHub Pages</p>
+          <p class="card-desc">
+            An interactive self-test quiz for <em>EEEM071 — Advanced Topics in
+            Computer Vision</em> at the University of Surrey. Covers the full
+            L1–L25 lecture series with multiple-choice questions, instant
+            feedback, explanations, flagging, wrong-only review, and
+            <code>localStorage</code>-backed progress.
+          </p>
+          <div class="card-actions">
+            <a class="btn btn--primary" href="https://github.com/LampOfSocrates/aiquiz" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.4-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+              Repo
+            </a>
+            <a class="btn btn--primary btn--accent" href="https://lampofsocrates.github.io/aiquiz/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Live
+            </a>
+          </div>
+        </div>
+      </article>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>Content placeholder.</p>
+      <!-- cine_nova / filmcraft -->
+      <article class="card card--cine">
+        <div class="card-cover" aria-hidden="true">
+          <svg class="card-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="cn-bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#3a0e3a"/>
+                <stop offset="50%" stop-color="#7a1c50"/>
+                <stop offset="100%" stop-color="#d4621a"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="200" fill="url(#cn-bg)"/>
+            <!-- film strip -->
+            <g>
+              <rect x="0" y="70" width="400" height="60" fill="#1a0a1a" opacity="0.85"/>
+              <g fill="#3a0e3a">
+                <rect x="10" y="75" width="12" height="10"/>
+                <rect x="10" y="115" width="12" height="10"/>
+                <rect x="60" y="75" width="12" height="10"/>
+                <rect x="60" y="115" width="12" height="10"/>
+                <rect x="110" y="75" width="12" height="10"/>
+                <rect x="110" y="115" width="12" height="10"/>
+                <rect x="160" y="75" width="12" height="10"/>
+                <rect x="160" y="115" width="12" height="10"/>
+                <rect x="210" y="75" width="12" height="10"/>
+                <rect x="210" y="115" width="12" height="10"/>
+                <rect x="260" y="75" width="12" height="10"/>
+                <rect x="260" y="115" width="12" height="10"/>
+                <rect x="310" y="75" width="12" height="10"/>
+                <rect x="310" y="115" width="12" height="10"/>
+                <rect x="360" y="75" width="12" height="10"/>
+                <rect x="360" y="115" width="12" height="10"/>
+              </g>
+              <!-- 3 frames with simple shapes -->
+              <rect x="30" y="88" width="60" height="24" fill="#f4d29c" opacity="0.9"/>
+              <circle cx="60" cy="100" r="6" fill="#d4621a"/>
+              <rect x="130" y="88" width="60" height="24" fill="#9fc8e0" opacity="0.9"/>
+              <path d="M140 108 L155 92 L170 100 L185 95 L185 108 Z" fill="#3a4a6a"/>
+              <rect x="230" y="88" width="60" height="24" fill="#1a3a5a" opacity="0.9"/>
+              <circle cx="260" cy="95" r="3" fill="#f4d29c"/>
+              <rect x="330" y="88" width="60" height="24" fill="#d4621a" opacity="0.9"/>
+              <path d="M340 110 L355 95 L370 110 Z" fill="#7a1c50"/>
+            </g>
+            <!-- spark dots above -->
+            <g fill="#f4d29c" opacity="0.8">
+              <circle cx="80" cy="30" r="2"/>
+              <circle cx="160" cy="20" r="1.5"/>
+              <circle cx="240" cy="35" r="2.5"/>
+              <circle cx="320" cy="25" r="1.5"/>
+              <circle cx="200" cy="50" r="1"/>
+            </g>
+          </svg>
+          <div class="card-icon" title="cine_nova">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M2 7h20"/>
+              <circle cx="6" cy="5" r="0.5" fill="currentColor"/>
+              <circle cx="10" cy="5" r="0.5" fill="currentColor"/>
+              <circle cx="14" cy="5" r="0.5" fill="currentColor"/>
+              <circle cx="18" cy="5" r="0.5" fill="currentColor"/>
+              <path d="M8 21h8"/>
+              <path d="M12 17v4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">cine_nova <span class="card-alt">/ filmcraft</span></h2>
+          <p class="card-tag">AI storyboard pipeline · AWS Bedrock · FastAPI · React</p>
+          <p class="card-desc">
+            An AI-powered storyboard pipeline that turns a script into a visual
+            storyboard — beats, shot lists, cinematic instructions, and
+            generated images — using AWS Bedrock (Nova Pro + Nova Canvas).
+            Export to MP4, PDF or GIF.
+          </p>
+          <div class="card-actions">
+            <a class="btn btn--primary" href="https://github.com/LampOfSocrates/cine_nova" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.4-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+              Repo
+            </a>
+            <a class="btn btn--primary btn--accent" href="https://d2f66v1pekeaym.cloudfront.net" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Live
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- propertyguru -->
+      <article class="card card--pg">
+        <div class="card-cover" aria-hidden="true">
+          <svg class="card-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="pg-bg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0f3a4a"/>
+                <stop offset="100%" stop-color="#1c5870"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="200" fill="url(#pg-bg)"/>
+            <!-- subtle dots -->
+            <g fill="#3a7a92" opacity="0.4">
+              <circle cx="40" cy="40" r="1"/><circle cx="80" cy="40" r="1"/><circle cx="120" cy="40" r="1"/>
+              <circle cx="160" cy="40" r="1"/><circle cx="200" cy="40" r="1"/><circle cx="240" cy="40" r="1"/>
+              <circle cx="280" cy="40" r="1"/><circle cx="320" cy="40" r="1"/><circle cx="360" cy="40" r="1"/>
+              <circle cx="40" cy="80" r="1"/><circle cx="80" cy="80" r="1"/><circle cx="120" cy="80" r="1"/>
+              <circle cx="160" cy="80" r="1"/><circle cx="200" cy="80" r="1"/><circle cx="240" cy="80" r="1"/>
+              <circle cx="280" cy="80" r="1"/><circle cx="320" cy="80" r="1"/><circle cx="360" cy="80" r="1"/>
+              <circle cx="40" cy="120" r="1"/><circle cx="80" cy="120" r="1"/><circle cx="120" cy="120" r="1"/>
+              <circle cx="160" cy="120" r="1"/><circle cx="200" cy="120" r="1"/><circle cx="240" cy="120" r="1"/>
+              <circle cx="280" cy="120" r="1"/><circle cx="320" cy="120" r="1"/><circle cx="360" cy="120" r="1"/>
+              <circle cx="40" cy="160" r="1"/><circle cx="80" cy="160" r="1"/><circle cx="120" cy="160" r="1"/>
+              <circle cx="160" cy="160" r="1"/><circle cx="200" cy="160" r="1"/><circle cx="240" cy="160" r="1"/>
+              <circle cx="280" cy="160" r="1"/><circle cx="320" cy="160" r="1"/><circle cx="360" cy="160" r="1"/>
+            </g>
+            <!-- ticket card mockup -->
+            <g>
+              <rect x="40" y="55" width="320" height="100" rx="10" fill="#f5f1e8" stroke="#2a8aa8" stroke-width="1"/>
+              <!-- icon badge -->
+              <rect x="55" y="70" width="32" height="32" rx="8" fill="#cfe7f0"/>
+              <path d="M65 86 l4 4 l8 -10" stroke="#0f3a4a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- title lines -->
+              <rect x="100" y="73" width="150" height="6" rx="3" fill="#1c2a30"/>
+              <rect x="100" y="86" width="100" height="4" rx="2" fill="#7a8a92"/>
+              <!-- status meter (4 segments) -->
+              <rect x="55" y="118" width="60" height="6" rx="3" fill="#4ade80"/>
+              <rect x="120" y="118" width="60" height="6" rx="3" fill="#4ade80"/>
+              <rect x="185" y="118" width="60" height="6" rx="3" fill="#cbd5dc"/>
+              <rect x="250" y="118" width="60" height="6" rx="3" fill="#cbd5dc"/>
+              <text x="55" y="142" font-family="ui-monospace, monospace" font-size="10" fill="#4a5a62">Step 2 of 4 · Bidding</text>
+              <!-- priority chip -->
+              <rect x="290" y="70" width="56" height="20" rx="10" fill="#fde2cf"/>
+              <text x="318" y="84" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7a3210" font-weight="600">HIGH</text>
+            </g>
+          </svg>
+          <div class="card-icon" title="propertyguru">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 11l9-8 9 8"/>
+              <path d="M5 10v10h14V10"/>
+              <path d="M14 13.5a2 2 0 1 0 -3.41 1.41l-2.09 2.09 1.5 1.5 2.09-2.09A2 2 0 0 0 14 13.5z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">propertyguru</h2>
+          <p class="card-tag">Design-system port · Next.js · Tailwind · Prisma</p>
+          <p class="card-desc">
+            A design-system port for the PropertyGuru codebase: extended theme
+            tokens, four agency presets, a 4-segment status-meter component,
+            category icons, and rewrites of every requester and vendor screen —
+            so a ticket list scans by trade, not by reading title text.
+          </p>
+          <div class="card-actions">
+            <a class="btn btn--primary" href="https://github.com/LampOfSocrates/propertyguru" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.4-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+              Repo
+            </a>
+            <a class="btn btn--ghost btn--disabled" href="#" aria-disabled="true" title="No live URL yet — see README">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Live · TBD
+            </a>
+          </div>
+        </div>
+      </article>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Landing</p>
+    <p>&copy; <span id="year"></span> Sourav Sen · <a href="https://github.com/LampOfSocrates" target="_blank" rel="noopener">github.com/LampOfSocrates</a></p>
   </footer>
 
   <script src="script.js"></script>
