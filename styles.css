@@ -1,4 +1,5 @@
-:root {
+:root,
+:root[data-theme="dark"] {
   --bg: #0e1116;
   --bg-soft: #161a22;
   --surface: #1c2230;
@@ -8,12 +9,42 @@
   --line: #2a3142;
   --accent: #7aa9ff;
   --accent-warm: #ffb37a;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.5), 0 22px 50px rgba(0, 0, 0, 0.45);
+  --header-bg: rgba(14, 17, 22, 0.7);
+  --btn-primary-bg: var(--fg);
+  --btn-primary-fg: #0e1116;
+  --btn-primary-hover-bg: #fff;
+  --btn-accent-bg: var(--accent);
+  --btn-accent-fg: #0e1116;
+  --btn-accent-hover-bg: #a3c4ff;
+}
 
+:root[data-theme="light"] {
+  --bg: #f6f4ee;
+  --bg-soft: #ecead9;
+  --surface: #fffdf6;
+  --fg: #1c1a14;
+  --fg-soft: #5a564a;
+  --muted: #8a8472;
+  --line: #d8d3bf;
+  --accent: #2b5fb8;
+  --accent-warm: #c25a14;
+  --shadow-card: 0 1px 2px rgba(20, 16, 10, 0.06), 0 12px 32px rgba(20, 16, 10, 0.08);
+  --shadow-hover: 0 2px 4px rgba(20, 16, 10, 0.08), 0 22px 50px rgba(20, 16, 10, 0.12);
+  --header-bg: rgba(246, 244, 238, 0.8);
+  --btn-primary-bg: #1c1a14;
+  --btn-primary-fg: #fffdf6;
+  --btn-primary-hover-bg: #000;
+  --btn-accent-bg: var(--accent);
+  --btn-accent-fg: #fffdf6;
+  --btn-accent-hover-bg: #1f4d99;
+}
+
+:root {
   --max-width: 1180px;
   --radius: 14px;
   --radius-sm: 8px;
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
-  --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.5), 0 22px 50px rgba(0, 0, 0, 0.45);
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
@@ -41,6 +72,14 @@ body {
     radial-gradient(900px 500px at -10% 30%, rgba(255, 179, 122, 0.06), transparent 60%),
     var(--bg);
   min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(1100px 600px at 80% -10%, rgba(43, 95, 184, 0.07), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(194, 90, 20, 0.05), transparent 60%),
+    var(--bg);
 }
 
 a {
@@ -65,7 +104,7 @@ code {
 
 .site-header {
   border-bottom: 1px solid var(--line);
-  background: rgba(14, 17, 22, 0.7);
+  background: var(--header-bg);
   backdrop-filter: blur(8px);
   position: sticky;
   top: 0;
@@ -284,26 +323,26 @@ code {
 }
 
 .btn--primary {
-  background: var(--fg);
-  color: #0e1116;
-  border-color: var(--fg);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  border-color: var(--btn-primary-bg);
 }
 
 .btn--primary:hover {
-  background: #fff;
-  border-color: #fff;
+  background: var(--btn-primary-hover-bg);
+  border-color: var(--btn-primary-hover-bg);
   text-decoration: none;
 }
 
 .btn--accent {
-  background: var(--accent);
-  color: #0e1116;
-  border-color: var(--accent);
+  background: var(--btn-accent-bg);
+  color: var(--btn-accent-fg);
+  border-color: var(--btn-accent-bg);
 }
 
 .btn--accent:hover {
-  background: #a3c4ff;
-  border-color: #a3c4ff;
+  background: var(--btn-accent-hover-bg);
+  border-color: var(--btn-accent-hover-bg);
   text-decoration: none;
 }
 
@@ -367,4 +406,79 @@ code {
   .btn {
     transition: none;
   }
+}
+
+/* ---------- theme toggle ---------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--fg-soft);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--fg);
+  border-color: var(--muted);
+  background: var(--bg-soft);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+:root[data-theme="dark"]  .theme-icon--sun  { display: block; }
+:root[data-theme="dark"]  .theme-icon--moon { display: none; }
+:root[data-theme="light"] .theme-icon--sun  { display: none; }
+:root[data-theme="light"] .theme-icon--moon { display: block; }
+
+/* ---------- card meta (last commit) ---------- */
+
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--fg-soft);
+  margin: 0.5rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  min-height: 1.1em;
+}
+
+.card-meta--muted {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.card-meta-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.18);
+}
+
+.card-meta time {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.card-meta-msg {
+  color: var(--muted);
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
