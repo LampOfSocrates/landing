@@ -42,7 +42,7 @@
 }
 
 :root {
-  --max-width: 1280px;
+  --max-width: 1536px;
   --radius: 12px;
   --radius-sm: 7px;
 
@@ -232,7 +232,7 @@ code {
 
 .card-cover {
   position: relative;
-  width: 120px;
+  width: 144px;
   flex-shrink: 0;
   align-self: stretch;
   overflow: hidden;
@@ -306,7 +306,7 @@ code {
   margin: 0.1rem 0 0;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
