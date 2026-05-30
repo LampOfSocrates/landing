@@ -64,6 +64,14 @@ document.getElementById("year").textContent = new Date().getFullYear();
     }
   }
 
+  // Parse "last page" out of GitHub's Link header.
+  // With per_page=1 the total page count == total commit count.
+  function commitCountFromLinkHeader(link) {
+    if (!link) return null;
+    var m = link.match(/[?&]page=(\d+)[^>]*>;\s*rel="last"/);
+    return m ? parseInt(m[1], 10) : null;
+  }
+
   cards.forEach(function (card) {
     var repo = card.getAttribute("data-repo");
     // Show a placeholder so layout doesn't jump on slow networks
@@ -76,23 +84,25 @@ document.getElementById("year").textContent = new Date().getFullYear();
         if (r.status === 404) throw new Error("not-found");
         if (r.status === 403) throw new Error("rate-limited");
         if (!r.ok) throw new Error("http-" + r.status);
-        return r.json();
+        var count = commitCountFromLinkHeader(r.headers.get("Link"));
+        return r.json().then(function (data) { return { data: data, count: count }; });
       })
-      .then(function (data) {
-        var commit = Array.isArray(data) && data[0];
+      .then(function (res) {
+        var commit = Array.isArray(res.data) && res.data[0];
         if (!commit) throw new Error("empty");
         var dateStr = commit.commit && commit.commit.committer && commit.commit.committer.date;
         if (!dateStr) throw new Error("no-date");
         var when = new Date(dateStr).getTime();
-        var msg  = (commit.commit.message || "").split("\n")[0];
-        if (msg.length > 60) msg = msg.slice(0, 57) + "…";
+        // res.count is null when there's a single page (1 commit) — Link header is absent in that case.
+        var count = res.count == null ? 1 : res.count;
         var existing = card.querySelector(".card-meta");
         if (existing) {
           existing.classList.remove("card-meta--muted");
           existing.innerHTML =
             '<span class="card-meta-dot" aria-hidden="true"></span>' +
             'Updated <time datetime="' + dateStr + '">' + relativeTime(when) + '</time>' +
-            ' · <span class="card-meta-msg">' + escapeHtml(msg) + '</span>';
+            '<span class="card-meta-sep">·</span>' +
+            '<span class="card-meta-commits">' + count + ' commit' + (count === 1 ? '' : 's') + '</span>';
         }
       })
       .catch(function (err) {
@@ -100,7 +110,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
         if (!existing) return;
         existing.classList.add("card-meta--muted");
         if (err.message === "not-found") {
-          existing.textContent = "Repo not public (yet)";
+          existing.textContent = "Private repo · commit info hidden";
         } else if (err.message === "rate-limited") {
           existing.textContent = "GitHub rate-limited — refresh later";
         } else {
@@ -108,10 +118,4 @@ document.getElementById("year").textContent = new Date().getFullYear();
         }
       });
   });
-
-  function escapeHtml(s) {
-    return s.replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
-  }
 })();
