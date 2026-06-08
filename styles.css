@@ -405,9 +405,11 @@ code {
 
 /* ---------- per-card accents (subtle hover-border tint) ---------- */
 
+.card--clove:hover     { border-color: #34d399; }
 .card--fingod:hover    { border-color: #4ade80; }
 .card--aiquiz:hover    { border-color: #c8b896; }
 .card--cine:hover      { border-color: #d4621a; }
+.card--adk:hover       { border-color: #8ab4f8; }
 .card--pg:hover        { border-color: #2a8aa8; }
 .card--nbstream:hover  { border-color: #ff4b4b; }
 .card--plm:hover       { border-color: #7be5b8; }
