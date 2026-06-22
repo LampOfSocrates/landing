@@ -93,6 +93,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
         var dateStr = commit.commit && commit.commit.committer && commit.commit.committer.date;
         if (!dateStr) throw new Error("no-date");
         var when = new Date(dateStr).getTime();
+        card.dataset.commitTs = String(when);
         // res.count is null when there's a single page (1 commit) — Link header is absent in that case.
         var count = res.count == null ? 1 : res.count;
         var existing = card.querySelector(".card-meta");
@@ -104,8 +105,12 @@ document.getElementById("year").textContent = new Date().getFullYear();
             '<span class="card-meta-sep">·</span>' +
             '<span class="card-meta-commits">' + count + ' commit' + (count === 1 ? '' : 's') + '</span>';
         }
+        document.dispatchEvent(new CustomEvent("cards:commit-loaded"));
       })
       .catch(function (err) {
+        // Unknown commit time → sort to the bottom under "Recent".
+        if (!card.dataset.commitTs) card.dataset.commitTs = "0";
+        document.dispatchEvent(new CustomEvent("cards:commit-loaded"));
         var existing = card.querySelector(".card-meta");
         if (!existing) return;
         existing.classList.add("card-meta--muted");
@@ -118,4 +123,52 @@ document.getElementById("year").textContent = new Date().getFullYear();
         }
       });
   });
+})();
+
+// ---------- Sort cards (recent / name) ----------
+(function () {
+  var grid = document.getElementById("projects");
+  var buttons = document.querySelectorAll(".sort-btn");
+  if (!grid || !buttons.length) return;
+
+  function cardName(card) {
+    var t = card.querySelector(".card-title");
+    return (t ? t.textContent : card.getAttribute("data-repo") || "").trim().toLowerCase();
+  }
+
+  function cardTime(card) {
+    var ts = parseInt(card.dataset.commitTs, 10);
+    return isNaN(ts) ? -1 : ts; // not loaded yet / unavailable → bottom for "recent"
+  }
+
+  function sortCards(mode) {
+    var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
+    cards.sort(function (a, b) {
+      if (mode === "name") return cardName(a).localeCompare(cardName(b));
+      var diff = cardTime(b) - cardTime(a); // recent first
+      return diff !== 0 ? diff : cardName(a).localeCompare(cardName(b));
+    });
+    cards.forEach(function (c) { grid.appendChild(c); });
+  }
+
+  function setMode(mode) {
+    buttons.forEach(function (b) {
+      var on = b.getAttribute("data-sort") === mode;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    localStorage.setItem("sortMode", mode);
+    sortCards(mode);
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () { setMode(b.getAttribute("data-sort")); });
+  });
+
+  // Commit times arrive asynchronously — keep re-sorting while "recent" is active.
+  document.addEventListener("cards:commit-loaded", function () {
+    if ((localStorage.getItem("sortMode") || "recent") === "recent") sortCards("recent");
+  });
+
+  setMode(localStorage.getItem("sortMode") || "recent");
 })();
