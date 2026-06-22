@@ -416,6 +416,7 @@ code {
 .card--asyncq:hover    { border-color: #34d399; }
 .card--llmeval:hover   { border-color: #818cf8; }
 .card--reid:hover      { border-color: #38bdf8; }
+.card--money:hover     { border-color: #34d399; }
 
 /* ---------- footer ---------- */
 
