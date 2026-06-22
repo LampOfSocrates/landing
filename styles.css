@@ -320,6 +320,7 @@ code {
   gap: 0.45rem;
   flex: 1;
   min-width: 0;
+  position: relative;
 }
 
 .card-title {
@@ -468,6 +469,34 @@ code {
 .card--llmeval:hover   { border-color: #818cf8; }
 .card--reid:hover      { border-color: #38bdf8; }
 .card--money:hover     { border-color: #34d399; }
+
+/* ---------- AWS-deployed projects (green) ---------- */
+
+.card--aws {
+  border-color: rgba(74, 222, 128, 0.6);
+  background:
+    linear-gradient(180deg, rgba(74, 222, 128, 0.08), rgba(74, 222, 128, 0.02)),
+    var(--surface);
+  box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.22), var(--shadow-card);
+}
+
+.card--aws:hover {
+  border-color: #4ade80;
+  box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.4), var(--shadow-hover);
+}
+
+.card--aws .card-body::before {
+  content: "AWS";
+  position: absolute;
+  top: 0.9rem;
+  right: 1.25rem;
+  font: 700 0.62rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.06em;
+  color: #06351f;
+  background: #4ade80;
+  padding: 0.28rem 0.42rem;
+  border-radius: 6px;
+}
 
 /* ---------- footer ---------- */
 
