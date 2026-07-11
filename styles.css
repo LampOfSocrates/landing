@@ -517,11 +517,12 @@ code {
   box-shadow: var(--shadow-card);
 }
 
+/* Fixed columns so every ribbon lines up: name | tag | updated | actions */
 .projects--list .card-body {
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr) 15rem max-content;
   align-items: center;
   gap: 0.4rem 1.1rem;
-  flex-wrap: wrap;
   padding: 0.65rem 1rem;
 }
 
@@ -532,11 +533,11 @@ code {
 
 .projects--list .card-title {
   font-size: 0.95rem;
-  flex: 0 0 15rem;
   min-width: 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  overflow: hidden;
 }
 
 .projects--list .card-alt {
@@ -544,7 +545,6 @@ code {
 }
 
 .projects--list .card-tag {
-  flex: 1 1 14rem;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -553,14 +553,16 @@ code {
 
 .projects--list .card-meta {
   margin: 0;
-  flex: 0 0 auto;
+  min-width: 0;
   white-space: nowrap;
+  overflow: hidden;
+  flex-wrap: nowrap;
 }
 
 .projects--list .card-actions {
   margin: 0;
-  margin-left: auto;
   flex-wrap: nowrap;
+  justify-self: end;
 }
 
 .projects--list .btn {
@@ -568,10 +570,19 @@ code {
   font-size: 0.76rem;
 }
 
-/* AWS chip: inline instead of pinned to the card corner */
+/* AWS chip: move from the card corner into the title cell */
 .projects--list .card--aws .card-body::before {
-  position: static;
-  order: -1;
+  display: none;
+}
+
+.projects--list .card--aws .card-title::before {
+  content: "AWS";
+  font: 700 0.6rem/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  color: #06351f;
+  background: #4ade80;
+  padding: 0.24rem 0.4rem;
+  border-radius: 6px;
   flex-shrink: 0;
 }
 
@@ -604,10 +615,14 @@ code {
   box-shadow: 0 0 0 2.5px rgba(245, 158, 11, 0.2);
 }
 
-@media (max-width: 900px) {
-  .projects--list .card-title { flex-basis: 100%; }
-  .projects--list .card-tag { flex-basis: 100%; white-space: normal; }
-  .projects--list .card-actions { margin-left: 0; }
+@media (max-width: 1000px) {
+  .projects--list .card-body {
+    grid-template-columns: minmax(0, 1fr) max-content;
+  }
+  .projects--list .card-title { grid-column: 1; grid-row: 1; }
+  .projects--list .card-actions { grid-column: 2; grid-row: 1; }
+  .projects--list .card-tag { grid-column: 1 / -1; white-space: normal; }
+  .projects--list .card-meta { grid-column: 1 / -1; }
 }
 
 .toolbar-gap {
