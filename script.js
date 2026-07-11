@@ -132,7 +132,8 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // ---------- Sort cards (recent / name) ----------
 (function () {
   var grid = document.getElementById("projects");
-  var buttons = document.querySelectorAll(".sort-btn");
+  // Scope to [data-sort]: the view-toggle buttons share the .sort-btn class for styling.
+  var buttons = document.querySelectorAll(".sort-btn[data-sort]");
   if (!grid || !buttons.length) return;
 
   function cardName(card) {
@@ -156,6 +157,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
   }
 
   function setMode(mode) {
+    if (mode !== "name") mode = "recent"; // guard against stale/invalid stored values
     buttons.forEach(function (b) {
       var on = b.getAttribute("data-sort") === mode;
       b.classList.toggle("is-active", on);
@@ -184,6 +186,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
   if (!grid || !buttons.length) return;
 
   function setView(mode) {
+    if (mode !== "list") mode = "cards";
     grid.classList.toggle("projects--list", mode === "list");
     buttons.forEach(function (b) {
       var on = b.getAttribute("data-view") === mode;
