@@ -499,6 +499,34 @@ code {
   border-radius: 6px;
 }
 
+/* ---------- Cloudflare-deployed projects (orange) ---------- */
+
+.card--cf {
+  border-color: rgba(246, 130, 31, 0.6);
+  background:
+    linear-gradient(180deg, rgba(246, 130, 31, 0.08), rgba(246, 130, 31, 0.02)),
+    var(--surface);
+  box-shadow: 0 0 0 1px rgba(246, 130, 31, 0.22), var(--shadow-card);
+}
+
+.card--cf:hover {
+  border-color: #f6821f;
+  box-shadow: 0 0 0 1px rgba(246, 130, 31, 0.4), var(--shadow-hover);
+}
+
+.card--cf .card-body::before {
+  content: "CF";
+  position: absolute;
+  top: 0.9rem;
+  right: 1.25rem;
+  font: 700 0.62rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.06em;
+  color: #3d1e00;
+  background: #f6821f;
+  padding: 0.28rem 0.42rem;
+  border-radius: 6px;
+}
+
 /* ---------- list view (ribbons) ---------- */
 
 .projects--list {
@@ -583,6 +611,22 @@ code {
   letter-spacing: 0.06em;
   color: #06351f;
   background: #4ade80;
+  padding: 0.24rem 0.4rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* Cloudflare chip: same treatment as the AWS one */
+.projects--list .card--cf .card-body::before {
+  display: none;
+}
+
+.projects--list .card--cf .card-title::before {
+  content: "CF";
+  font: 700 0.6rem/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  color: #3d1e00;
+  background: #f6821f;
   padding: 0.24rem 0.4rem;
   border-radius: 6px;
   flex-shrink: 0;
