@@ -72,10 +72,64 @@ document.getElementById("year").textContent = new Date().getFullYear();
     return m ? parseInt(m[1], 10) : null;
   }
 
+  // Unauthenticated GitHub API allows 60 req/hr per IP and each load costs
+  // one request per card — cache results so reloads don't re-spend the quota.
+  var CACHE_TTL = 30 * 60 * 1000;
+
+  function readCache(repo) {
+    try {
+      var raw = localStorage.getItem("commitCache:" + repo);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
+  function writeCache(repo, entry) {
+    try { localStorage.setItem("commitCache:" + repo, JSON.stringify(entry)); } catch (e) {}
+  }
+
+  function renderCommit(card, dateStr, count) {
+    var when = new Date(dateStr).getTime();
+    card.dataset.commitTs = String(when);
+    // Highly active: last commit within 14 days → amber in list view.
+    if (Date.now() - when <= 14 * 24 * 60 * 60 * 1000) {
+      card.classList.add("card--hot");
+    }
+    var existing = card.querySelector(".card-meta");
+    if (existing) {
+      existing.classList.remove("card-meta--muted");
+      existing.innerHTML =
+        '<span class="card-meta-dot" aria-hidden="true"></span>' +
+        'Updated <time datetime="' + dateStr + '">' + relativeTime(when) + '</time>' +
+        '<span class="card-meta-sep">·</span>' +
+        '<span class="card-meta-commits">' + count + ' commit' + (count === 1 ? '' : 's') + '</span>';
+    }
+    document.dispatchEvent(new CustomEvent("cards:commit-loaded"));
+  }
+
+  function renderError(card, message) {
+    // Unknown commit time → sort to the bottom under "Recent".
+    if (!card.dataset.commitTs) card.dataset.commitTs = "0";
+    document.dispatchEvent(new CustomEvent("cards:commit-loaded"));
+    var existing = card.querySelector(".card-meta");
+    if (!existing) return;
+    existing.classList.add("card-meta--muted");
+    existing.textContent = message;
+  }
+
   cards.forEach(function (card) {
     var repo = card.getAttribute("data-repo");
     // Show a placeholder so layout doesn't jump on slow networks
     injectMeta(card, "Loading commit info…", { muted: true });
+
+    var cached = readCache(repo);
+    if (cached && Date.now() - cached.at < CACHE_TTL) {
+      if (cached.notFound) {
+        renderError(card, "Private repo · commit info hidden");
+      } else {
+        renderCommit(card, cached.dateStr, cached.count);
+      }
+      return;
+    }
 
     fetch("https://api.github.com/repos/" + repo + "/commits?per_page=1", {
       headers: { "Accept": "application/vnd.github+json" }
@@ -92,38 +146,23 @@ document.getElementById("year").textContent = new Date().getFullYear();
         if (!commit) throw new Error("empty");
         var dateStr = commit.commit && commit.commit.committer && commit.commit.committer.date;
         if (!dateStr) throw new Error("no-date");
-        var when = new Date(dateStr).getTime();
-        card.dataset.commitTs = String(when);
-        // Highly active: last commit within 14 days → amber in list view.
-        if (Date.now() - when <= 14 * 24 * 60 * 60 * 1000) {
-          card.classList.add("card--hot");
-        }
         // res.count is null when there's a single page (1 commit) — Link header is absent in that case.
         var count = res.count == null ? 1 : res.count;
-        var existing = card.querySelector(".card-meta");
-        if (existing) {
-          existing.classList.remove("card-meta--muted");
-          existing.innerHTML =
-            '<span class="card-meta-dot" aria-hidden="true"></span>' +
-            'Updated <time datetime="' + dateStr + '">' + relativeTime(when) + '</time>' +
-            '<span class="card-meta-sep">·</span>' +
-            '<span class="card-meta-commits">' + count + ' commit' + (count === 1 ? '' : 's') + '</span>';
-        }
-        document.dispatchEvent(new CustomEvent("cards:commit-loaded"));
+        writeCache(repo, { dateStr: dateStr, count: count, at: Date.now() });
+        renderCommit(card, dateStr, count);
       })
       .catch(function (err) {
-        // Unknown commit time → sort to the bottom under "Recent".
-        if (!card.dataset.commitTs) card.dataset.commitTs = "0";
-        document.dispatchEvent(new CustomEvent("cards:commit-loaded"));
-        var existing = card.querySelector(".card-meta");
-        if (!existing) return;
-        existing.classList.add("card-meta--muted");
         if (err.message === "not-found") {
-          existing.textContent = "Private repo · commit info hidden";
+          // 404s burn quota too — cache them as well.
+          writeCache(repo, { notFound: true, at: Date.now() });
+          renderError(card, "Private repo · commit info hidden");
+        } else if (cached && !cached.notFound) {
+          // Stale-if-error: an expired cache entry beats no data.
+          renderCommit(card, cached.dateStr, cached.count);
         } else if (err.message === "rate-limited") {
-          existing.textContent = "GitHub rate-limited — refresh later";
+          renderError(card, "GitHub rate-limited — refresh later");
         } else {
-          existing.textContent = "Commit info unavailable";
+          renderError(card, "Commit info unavailable");
         }
       });
   });
