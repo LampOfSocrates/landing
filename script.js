@@ -94,6 +94,10 @@ document.getElementById("year").textContent = new Date().getFullYear();
         if (!dateStr) throw new Error("no-date");
         var when = new Date(dateStr).getTime();
         card.dataset.commitTs = String(when);
+        // Highly active: last commit within 14 days → amber in list view.
+        if (Date.now() - when <= 14 * 24 * 60 * 60 * 1000) {
+          card.classList.add("card--hot");
+        }
         // res.count is null when there's a single page (1 commit) — Link header is absent in that case.
         var count = res.count == null ? 1 : res.count;
         var existing = card.querySelector(".card-meta");
@@ -171,4 +175,27 @@ document.getElementById("year").textContent = new Date().getFullYear();
   });
 
   setMode(localStorage.getItem("sortMode") || "recent");
+})();
+
+// ---------- View toggle (cards / list) ----------
+(function () {
+  var grid = document.getElementById("projects");
+  var buttons = document.querySelectorAll(".view-btn");
+  if (!grid || !buttons.length) return;
+
+  function setView(mode) {
+    grid.classList.toggle("projects--list", mode === "list");
+    buttons.forEach(function (b) {
+      var on = b.getAttribute("data-view") === mode;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    localStorage.setItem("viewMode", mode);
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () { setView(b.getAttribute("data-view")); });
+  });
+
+  setView(localStorage.getItem("viewMode") || "cards");
 })();

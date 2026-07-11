@@ -469,6 +469,7 @@ code {
 .card--llmeval:hover   { border-color: #818cf8; }
 .card--reid:hover      { border-color: #38bdf8; }
 .card--money:hover     { border-color: #34d399; }
+.card--tri:hover       { border-color: #a78bfa; }
 
 /* ---------- AWS-deployed projects (green) ---------- */
 
@@ -496,6 +497,121 @@ code {
   background: #4ade80;
   padding: 0.28rem 0.42rem;
   border-radius: 6px;
+}
+
+/* ---------- list view (ribbons) ---------- */
+
+.projects--list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.projects--list .card {
+  flex-direction: row;
+  align-items: center;
+}
+
+.projects--list .card:hover {
+  transform: none;
+  box-shadow: var(--shadow-card);
+}
+
+.projects--list .card-body {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem 1.1rem;
+  flex-wrap: wrap;
+  padding: 0.65rem 1rem;
+}
+
+.projects--list .card-desc,
+.projects--list .card-info {
+  display: none;
+}
+
+.projects--list .card-title {
+  font-size: 0.95rem;
+  flex: 0 0 15rem;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.projects--list .card-alt {
+  display: none;
+}
+
+.projects--list .card-tag {
+  flex: 1 1 14rem;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projects--list .card-meta {
+  margin: 0;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.projects--list .card-actions {
+  margin: 0;
+  margin-left: auto;
+  flex-wrap: nowrap;
+}
+
+.projects--list .btn {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.76rem;
+}
+
+/* AWS chip: inline instead of pinned to the card corner */
+.projects--list .card--aws .card-body::before {
+  position: static;
+  order: -1;
+  flex-shrink: 0;
+}
+
+/* Highly active projects (last commit ≤ 14 days) — amber ribbon */
+.projects--list .card--hot {
+  border-color: rgba(245, 158, 11, 0.65);
+  background:
+    linear-gradient(90deg, rgba(245, 158, 11, 0.14), rgba(245, 158, 11, 0.02) 55%),
+    var(--surface);
+  box-shadow: inset 3px 0 0 #f59e0b, var(--shadow-card);
+}
+
+.projects--list .card--hot:hover {
+  border-color: #f59e0b;
+}
+
+.projects--list .card--hot .card-title::after {
+  content: "ACTIVE";
+  font: 700 0.6rem/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  color: #451a03;
+  background: #f59e0b;
+  padding: 0.24rem 0.4rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.projects--list .card--hot .card-meta-dot {
+  background: #f59e0b;
+  box-shadow: 0 0 0 2.5px rgba(245, 158, 11, 0.2);
+}
+
+@media (max-width: 900px) {
+  .projects--list .card-title { flex-basis: 100%; }
+  .projects--list .card-tag { flex-basis: 100%; white-space: normal; }
+  .projects--list .card-actions { margin-left: 0; }
+}
+
+.toolbar-gap {
+  margin-left: 1rem;
 }
 
 /* ---------- footer ---------- */
