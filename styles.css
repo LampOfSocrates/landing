@@ -517,10 +517,12 @@ code {
   box-shadow: var(--shadow-card);
 }
 
-/* Fixed columns so every ribbon lines up: name | tag | updated | actions */
+/* Fixed columns so every ribbon lines up: name | tag | updated | actions.
+   The actions column must be fixed too — max-content would resize per row
+   (1 vs 3 buttons) and shove the meta column around. */
 .projects--list .card-body {
   display: grid;
-  grid-template-columns: 15rem minmax(0, 1fr) 15rem max-content;
+  grid-template-columns: 15rem minmax(0, 1fr) 16rem 21rem;
   align-items: center;
   gap: 0.4rem 1.1rem;
   padding: 0.65rem 1rem;
@@ -562,7 +564,7 @@ code {
 .projects--list .card-actions {
   margin: 0;
   flex-wrap: nowrap;
-  justify-self: end;
+  justify-content: flex-end;
 }
 
 .projects--list .btn {
