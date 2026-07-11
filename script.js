@@ -87,13 +87,17 @@ document.getElementById("year").textContent = new Date().getFullYear();
     try { localStorage.setItem("commitCache:" + repo, JSON.stringify(entry)); } catch (e) {}
   }
 
+  // Highly active: last commit within 14 days → amber in list view.
+  var HOT_MS = 14 * 24 * 60 * 60 * 1000;
+
+  function markTime(card, when) {
+    card.dataset.commitTs = String(when);
+    card.classList.toggle("card--hot", Date.now() - when <= HOT_MS);
+  }
+
   function renderCommit(card, dateStr, count) {
     var when = new Date(dateStr).getTime();
-    card.dataset.commitTs = String(when);
-    // Highly active: last commit within 14 days → amber in list view.
-    if (Date.now() - when <= 14 * 24 * 60 * 60 * 1000) {
-      card.classList.add("card--hot");
-    }
+    markTime(card, when);
     var existing = card.querySelector(".card-meta");
     if (existing) {
       existing.classList.remove("card-meta--muted");
@@ -107,8 +111,17 @@ document.getElementById("year").textContent = new Date().getFullYear();
   }
 
   function renderError(card, message) {
-    // Unknown commit time → sort to the bottom under "Recent".
-    if (!card.dataset.commitTs) card.dataset.commitTs = "0";
+    // No live data: fall back to the last-known commit date baked into the
+    // HTML so "Recent" sorting still works; otherwise sort to the bottom.
+    if (!card.dataset.commitTs) {
+      var fb = card.getAttribute("data-fallback-date");
+      var fbTs = fb ? new Date(fb).getTime() : NaN;
+      if (!isNaN(fbTs)) {
+        markTime(card, fbTs);
+      } else {
+        card.dataset.commitTs = "0";
+      }
+    }
     document.dispatchEvent(new CustomEvent("cards:commit-loaded"));
     var existing = card.querySelector(".card-meta");
     if (!existing) return;
@@ -121,14 +134,16 @@ document.getElementById("year").textContent = new Date().getFullYear();
     // Show a placeholder so layout doesn't jump on slow networks
     injectMeta(card, "Loading commit info…", { muted: true });
 
+    // Stale-while-revalidate: render whatever we have immediately; only
+    // skip the network when the cache entry is still fresh.
     var cached = readCache(repo);
-    if (cached && Date.now() - cached.at < CACHE_TTL) {
+    if (cached) {
       if (cached.notFound) {
         renderError(card, "Private repo · commit info hidden");
       } else {
         renderCommit(card, cached.dateStr, cached.count);
       }
-      return;
+      if (Date.now() - cached.at < CACHE_TTL) return;
     }
 
     fetch("https://api.github.com/repos/" + repo + "/commits?per_page=1", {
@@ -156,9 +171,13 @@ document.getElementById("year").textContent = new Date().getFullYear();
           // 404s burn quota too — cache them as well.
           writeCache(repo, { notFound: true, at: Date.now() });
           renderError(card, "Private repo · commit info hidden");
-        } else if (cached && !cached.notFound) {
+        } else if (cached) {
           // Stale-if-error: an expired cache entry beats no data.
-          renderCommit(card, cached.dateStr, cached.count);
+          if (cached.notFound) {
+            renderError(card, "Private repo · commit info hidden");
+          } else {
+            renderCommit(card, cached.dateStr, cached.count);
+          }
         } else if (err.message === "rate-limited") {
           renderError(card, "GitHub rate-limited — refresh later");
         } else {
