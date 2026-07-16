@@ -470,6 +470,8 @@ code {
 .card--reid:hover      { border-color: #38bdf8; }
 .card--money:hover     { border-color: #34d399; }
 .card--tri:hover       { border-color: #a78bfa; }
+.card--fx:hover        { border-color: #fbbf24; }
+.card--vsal:hover      { border-color: #fb7185; }
 
 /* ---------- AWS-deployed projects (green) ---------- */
 
