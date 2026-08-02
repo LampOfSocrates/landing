@@ -152,6 +152,61 @@ code {
 
 /* ---------- hero ---------- */
 
+/* ---------- latest activity ---------- */
+
+.latest {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 0;
+}
+
+.latest-grid {
+  margin-top: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.latest-row {
+  display: grid;
+  grid-template-columns: 10rem 6.5rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.5rem 0.9rem;
+}
+
+.latest-row + .latest-row {
+  border-top: 1px solid var(--line);
+}
+
+.latest-name {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.latest-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.latest-desc {
+  font-size: 0.85rem;
+  color: var(--fg-soft);
+}
+
+@media (max-width: 640px) {
+  .latest-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .latest-desc {
+    grid-column: 1 / -1;
+  }
+}
+
 .hero {
   max-width: var(--max-width);
   margin: 0 auto;
