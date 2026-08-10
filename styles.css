@@ -522,6 +522,7 @@ code {
 .card--plm:hover       { border-color: #7be5b8; }
 .card--asyncq:hover    { border-color: #34d399; }
 .card--llmeval:hover   { border-color: #818cf8; }
+.card--cupel:hover     { border-color: #f5b942; }
 .card--reid:hover      { border-color: #38bdf8; }
 .card--money:hover     { border-color: #34d399; }
 .card--tri:hover       { border-color: #a78bfa; }

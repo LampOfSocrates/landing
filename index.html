@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sourav Sen — Pet Projects</title>
-  <meta name="description" content="A showcase of pet projects: clove-circle, fingod, google-adk-sample, aiquiz, cine_nova, propertyguru, nbstream, xai-starter, rl-starter, trimodal-loss, asyncq, llmeval, reid, MoneyCompass, fx-algo, video-saliency." />
+  <meta name="description" content="A showcase of pet projects: clove-circle, fingod, google-adk-sample, aiquiz, cine_nova, propertyguru, nbstream, xai-starter, rl-starter, trimodal-loss, asyncq, llmeval, cupel, reid, MoneyCompass, fx-algo, video-saliency." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
   <script>
     // Apply theme before paint to avoid flash.
     (function () {
@@ -51,9 +51,9 @@
       <p class="eyebrow">Latest activity</p>
       <div class="latest-grid">
         <div class="latest-row">
-          <span class="latest-name">skein</span>
-          <span class="latest-date">2026-08-05</span>
-          <span class="latest-desc">Half chat app, half agent studio (formerly loom): forkable conversations, replay &amp; compare Runs, LLM judge, traces — Phase 1 nearly complete</span>
+          <span class="latest-name">cupel</span>
+          <span class="latest-date">2026-08-10</span>
+          <span class="latest-desc">Half chat app, half agent studio (formerly skein): merged the landing page and demo into one Render service, redesigned it with a right-rail cupel illustration</span>
         </div>
         <div class="latest-row">
           <span class="latest-name">DIRT</span>
@@ -86,7 +86,7 @@
     <section class="hero">
       <p class="eyebrow">Pet projects · 2026</p>
       <h1>Things I'm building when no one asked me to.</h1>
-      <p class="lead">Fourteen side projects under <code>~/code/2026</code>.</p>
+      <p class="lead">Seventeen side projects under <code>~/code/2026</code>.</p>
     </section>
 
     <div class="projects-toolbar">
@@ -1097,6 +1097,98 @@
             <a class="btn btn--ghost" href="http://localhost:8000" target="_blank" rel="noopener" title="Self-hosted — make serve, then open http://localhost:8000 (SPA + API single origin)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
               Local · :8000
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- cupel -->
+      <article class="card card--cupel" data-repo="LampOfSocrates/cupel" data-fallback-date="2026-08-10">
+        <div class="card-cover" aria-hidden="true">
+          <svg class="card-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="cp-bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2e1a06"/>
+                <stop offset="100%" stop-color="#5c3a10"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="200" fill="url(#cp-bg)"/>
+            <!-- chat bubbles, left -->
+            <g>
+              <rect x="24" y="34" width="130" height="30" rx="10" fill="#3a2510" stroke="#f5b942" stroke-width="1"/>
+              <rect x="36" y="44" width="88" height="4" rx="2" fill="#e8c98a" opacity="0.7"/>
+              <rect x="36" y="52" width="60" height="4" rx="2" fill="#e8c98a" opacity="0.5"/>
+              <rect x="48" y="72" width="118" height="30" rx="10" fill="#f5b942" opacity="0.92"/>
+              <rect x="60" y="82" width="70" height="4" rx="2" fill="#2e1a06" opacity="0.65"/>
+              <rect x="60" y="90" width="94" height="4" rx="2" fill="#2e1a06" opacity="0.45"/>
+              <rect x="24" y="110" width="100" height="30" rx="10" fill="#3a2510" stroke="#f5b942" stroke-width="1"/>
+              <rect x="36" y="120" width="70" height="4" rx="2" fill="#e8c98a" opacity="0.7"/>
+              <rect x="36" y="128" width="44" height="4" rx="2" fill="#e8c98a" opacity="0.5"/>
+            </g>
+            <!-- cupel dish / assay, centre -->
+            <g transform="translate(200,150)">
+              <path d="M -30 0 Q -30 26 0 26 Q 30 26 30 0 Z" fill="#1f1305" stroke="#f5b942" stroke-width="1.5"/>
+              <ellipse cx="0" cy="0" rx="30" ry="8" fill="#f5b942" opacity="0.9"/>
+              <ellipse cx="0" cy="0" rx="14" ry="4" fill="#fff3d6"/>
+            </g>
+            <!-- comparison grid, right -->
+            <g transform="translate(206,26)">
+              <rect x="0" y="0" width="176" height="112" rx="6" fill="#1f1305" stroke="#f5b942" stroke-width="1"/>
+              <g stroke="#5c3a10" stroke-width="1">
+                <line x1="58"  y1="0" x2="58"  y2="112"/>
+                <line x1="117" y1="0" x2="117" y2="112"/>
+                <line x1="0" y1="30" x2="176" y2="30"/>
+                <line x1="0" y1="58" x2="176" y2="58"/>
+                <line x1="0" y1="86" x2="176" y2="86"/>
+              </g>
+              <g fill="#4ade80">
+                <path d="M14 15 l4 4 l8 -9" stroke="#4ade80" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M73 43 l4 4 l8 -9" stroke="#4ade80" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M132 71 l4 4 l8 -9" stroke="#4ade80" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <g stroke="#f87171" stroke-width="2.2" stroke-linecap="round">
+                <line x1="16" y1="43" x2="26" y2="53"/><line x1="26" y1="43" x2="16" y2="53"/>
+                <line x1="16" y1="99" x2="26" y2="109"/><line x1="26" y1="99" x2="16" y2="109"/>
+              </g>
+            </g>
+            <text x="20" y="188" font-family="ui-monospace, monospace" font-size="10" fill="#f5b942" font-weight="700">judge · traces · $</text>
+          </svg>
+          <div class="card-icon" title="cupel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6"/>
+              <path d="M10 3v5.5L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 8.5V3"/>
+              <path d="M7.5 14.5h9"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">cupel <span class="card-alt">formerly skein</span></h2>
+          <p class="card-tag">Self-hosted agent chat + studio · React · Vite · FastAPI mock</p>
+          <p class="card-desc">
+            The console for agents you already built: a chat client your users
+            can use, and the studio to make the agent better — versioned
+            instructions, forkable conversations, replay &amp; compare
+            evaluations, an LLM judge, and cost-tracked traces. Point it at
+            your own backend by editing one file (<code>agentic.config.ts</code>);
+            a 67-operation OpenAPI contract and <code>npm run create</code> scaffold
+            a product of your own, family by family (mine / mock / hide).
+          </p>
+          <div class="card-info">
+            <span class="card-info-label">path</span><code>~/code/2026/cupel</code>
+            <span class="card-info-label">run</span><code>npm start</code>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn--primary" href="https://github.com/LampOfSocrates/cupel" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.4-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+              Repo
+            </a>
+            <a class="btn btn--primary btn--accent" href="https://cupel-site.onrender.com" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Live
+            </a>
+            <a class="btn btn--ghost" href="http://localhost:5173" target="_blank" rel="noopener" title="npm start — UI on :5173 + bundled demo backend on :4010">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+              Local · :5173
             </a>
           </div>
         </div>
