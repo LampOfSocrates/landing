@@ -528,6 +528,10 @@ code {
 .card--tri:hover       { border-color: #a78bfa; }
 .card--fx:hover        { border-color: #fbbf24; }
 .card--vsal:hover      { border-color: #fb7185; }
+.card--afterglow:hover { border-color: #f59e0b; }
+.card--downbeat:hover  { border-color: #d8b4fe; }
+.card--journey:hover   { border-color: #22d3ee; }
+.card--dirt:hover      { border-color: #b45309; }
 
 /* ---------- AWS-deployed projects (green) ---------- */
 
