@@ -51,6 +51,11 @@
       <p class="eyebrow">Latest activity</p>
       <div class="latest-grid">
         <div class="latest-row">
+          <span class="latest-name">hock</span>
+          <span class="latest-date">2026-08-22</span>
+          <span class="latest-desc">Canine gait measurement: RTMPose-m (AP-10K) running on a Galaxy S25 Ultra, coordinate transform verified on device (a landscape-lock rotation bug was feeding the model a sideways scene). Started python-gait, the deterministic asymmetry engine that consumes its keypoints</span>
+        </div>
+        <div class="latest-row">
           <span class="latest-name">video-saliency</span>
           <span class="latest-date">2026-08-16</span>
           <span class="latest-desc">Built a media-browser web UI (click-to-play, skim fallback for HEVC), Drive backup check, and OTIO timeline export — via parallel subagents in worktrees, merged clean</span>
@@ -96,7 +101,7 @@
     <section class="hero">
       <p class="eyebrow">Pet projects · 2026</p>
       <h1>Things I'm building when no one asked me to.</h1>
-      <p class="lead">Twenty-one side projects under <code>~/code/2026</code>.</p>
+      <p class="lead">Twenty-two side projects under <code>~/code/2026</code>.</p>
     </section>
 
     <div class="projects-toolbar">
@@ -1491,6 +1496,85 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
               Local · :3000
             </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- hock -->
+      <article class="card card--hock">
+        <div class="card-cover" aria-hidden="true">
+          <svg class="card-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="hk-bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0d1a0b"/>
+                <stop offset="100%" stop-color="#1c2e10"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="200" fill="url(#hk-bg)"/>
+            <!-- calibration grid (thirds), as drawn by the app's overlay -->
+            <g stroke="#3f6b2a" stroke-width="0.8" opacity="0.7" stroke-dasharray="5 6">
+              <line x1="133" y1="0" x2="133" y2="200"/>
+              <line x1="266" y1="0" x2="266" y2="200"/>
+              <line x1="0" y1="66" x2="400" y2="66"/>
+              <line x1="0" y1="133" x2="400" y2="133"/>
+            </g>
+            <!-- viewfinder corners -->
+            <g stroke="#a3e635" stroke-width="2.5" fill="none" stroke-linecap="round">
+              <path d="M18 40 L18 24 L34 24"/>
+              <path d="M382 40 L382 24 L366 24"/>
+              <path d="M18 160 L18 176 L34 176"/>
+              <path d="M382 160 L382 176 L366 176"/>
+            </g>
+            <!-- quadruped skeleton, AP-10K style: spine, head, four limbs -->
+            <g stroke="#a3e635" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M96 96 L128 84 L262 84 L300 98"/>
+              <path d="M128 84 L120 122 L112 152"/>
+              <path d="M152 86 L160 122 L172 150"/>
+              <path d="M262 84 L272 120 L266 152"/>
+              <path d="M234 85 L226 120 L238 150"/>
+              <path d="M300 98 L322 90"/>
+            </g>
+            <g fill="#d9f99d">
+              <circle cx="96" cy="96" r="6"/>
+              <circle cx="128" cy="84" r="4.5"/><circle cx="152" cy="86" r="4.5"/>
+              <circle cx="234" cy="85" r="4.5"/><circle cx="262" cy="84" r="4.5"/>
+              <circle cx="300" cy="98" r="4.5"/>
+            </g>
+            <g fill="#fbbf24">
+              <circle cx="120" cy="122" r="4"/><circle cx="160" cy="122" r="4"/>
+              <circle cx="226" cy="120" r="4"/><circle cx="272" cy="120" r="4"/>
+            </g>
+            <g fill="#f87171">
+              <circle cx="112" cy="152" r="4"/><circle cx="172" cy="150" r="4"/>
+              <circle cx="238" cy="150" r="4"/><circle cx="266" cy="152" r="4"/>
+            </g>
+            <text x="30" y="52" font-family="ui-monospace, monospace" font-size="11" fill="#d9f99d" font-weight="700">MEASUREMENT PROBE</text>
+            <text x="30" y="186" font-family="ui-monospace, monospace" font-size="10" fill="#7fa858">cam 60.0  inf 8.6  lat 101 ms</text>
+          </svg>
+          <div class="card-icon" title="hock">
+            <img src="icons/hock.svg" alt="" />
+          </div>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">hock</h2>
+          <p class="card-tag">Android + Python · on-device canine pose · gait asymmetry</p>
+          <p class="card-desc">
+            Canine gait measurement in two decoupled halves that meet at one file
+            format. An Android capture app — Kotlin/Compose + CameraX, RTMPose-m
+            (AP-10K, 17 quadruped keypoints) as a bundled <code>.tflite</code>, a raw
+            keypoint overlay with a deliberately asymmetric calibration grid, and
+            independently measured camera and inference frame rates — asks whether an
+            on-device animal pose model tracks a real dog trotting across a real car
+            park. Alongside it, <code>python-gait</code>: a deterministic numpy/scipy
+            engine turning those keypoints into stride segmentation and gait asymmetry,
+            proven against synthetic signals with known answers before real data
+            arrives, and destined to be ported to Kotlin. No smoothing in the capture
+            path — filtering would hide the failure modes it exists to find. Fully
+            offline: no <code>INTERNET</code> permission is declared, by design.
+          </p>
+          <div class="card-info">
+            <span class="card-info-label">path</span><code>~/code/2026/hock</code>
+            <span class="card-info-label">run</span><code>./gradlew assembleDebug · cd python-gait &amp;&amp; pytest</code>
           </div>
         </div>
       </article>
