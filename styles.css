@@ -537,7 +537,7 @@ code {
 .card--afterglow:hover { border-color: #f59e0b; }
 .card--downbeat:hover  { border-color: #d8b4fe; }
 .card--hock:hover      { border-color: #a3e635; }
-.card--journey:hover   { border-color: #22d3ee; }
+.card--app-replay:hover   { border-color: #22d3ee; }
 .card--dirt:hover      { border-color: #b45309; }
 
 /* ---------- AWS-deployed projects (green) ---------- */

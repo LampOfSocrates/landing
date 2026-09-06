@@ -11,6 +11,7 @@ Static site, no build step. Deployed via GitHub Pages/similar under LampOfSocrat
 - Hand-authored "Latest activity" summary grid at the top, refreshed periodically from each project's own status
 
 ## Recently tried
+- 2026-09-06: Renamed journey-replayer to app-replay (card, icon, activity row, repo link).
 - 2026-08-22: Added hock card (Android canine-gait spike) + icon, activity row, project count 21 -> 22.
 - 2026-08-16: Refreshed the "Latest activity" grid from each project's own LATEST.md (What this is / Recently tried), added this LATEST.md.
 - 2026-08-10: Added cupel project card; refreshed latest-activity entry from skein to cupel.
