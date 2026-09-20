@@ -5,3 +5,5 @@ Thumbs.db
 .idea/
 node_modules/
 app/*.ico
+__pycache__/
+*.pyc
