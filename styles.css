@@ -538,6 +538,7 @@ code {
 .card--onbeat:hover    { border-color: #d8b4fe; }
 .card--hock:hover      { border-color: #a3e635; }
 .card--itinmap:hover   { border-color: #fb923c; }
+.card--agentlab:hover  { border-color: #3fbf9a; }
 .card--journey:hover   { border-color: #22d3ee; }
 .card--dirt:hover      { border-color: #b45309; }
 
