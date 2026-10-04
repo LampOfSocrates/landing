@@ -62,8 +62,8 @@
       <div class="latest-grid">
         <div class="latest-row">
           <span class="latest-name">agentlab</span>
-          <span class="latest-date">2026-09-29</span>
-          <span class="latest-desc">New project, now in a private GitHub repo and live on Cloudflare Pages. A four-scenario teaching lab where you build an AI agent, hack it with your own prompt injection, then lock it down. Today each agent got its own wiring diagram showing exactly where the poisoned data gets in and reaches the model</span>
+          <span class="latest-date">2026-10-04</span>
+          <span class="latest-desc">Big teaching pass. Every page is now collapsible panes; "How this agent is built" and "How the guardrails work" play step by step with Replay/Next and a countdown, and each unlocks a short quiz worth points. The run console types out the agent's thoughts and tool calls, with the trace on a second tab. From student feedback: the uptime checker got a new attack where the server talks the agent into scanning the internal network and reading cloud credentials, and a new guardrail G8 that checks a tool's arguments before the call is ever dispatched. Also a "see the code" page for every agent and a load-test fix so 200 users really do fail the latency SLO</span>
         </div>
         <div class="latest-row">
           <span class="latest-name">landing</span>
@@ -1617,7 +1617,7 @@
       </article>
 
       <!-- agentlab -->
-      <article class="card card--agentlab" data-fallback-date="2026-09-29">
+      <article class="card card--agentlab" data-fallback-date="2026-10-04">
         <div class="card-cover" aria-hidden="true">
           <svg class="card-art" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -1665,9 +1665,11 @@
             tools. Pick one of four agents (an inbox assistant, a coding agent, a
             vol-desk pricing bot, an uptime checker), grant it tools, and watch it
             run. Then write your own prompt injection into the data it reads,
-            watch it forward invoices or hallucinate a price, and finally lock it
-            down with least-privilege, approval gates and grounding. Each agent
-            has its own wiring diagram showing where the untrusted data gets in.
+            watch it forward invoices, hallucinate a price or scan its own
+            network, and finally lock it down with nine guardrails, from
+            least-privilege to argument checks in the harness. Animated
+            walkthroughs with quizzes, a typing run console with a trace tab, a
+            "see the code" page per agent, and a load test to ship it.
             Deployed on Cloudflare Pages; a 20-minute demo script is in the repo.
           </p>
           <div class="card-info">
